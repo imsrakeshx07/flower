@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player with Language Switch</title>
+    <style>
+        #video-container {
+            max-width: 800px;
+            margin: auto;
+            position: relative;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        select {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="video-container">
+    <video id="video" width="100%" controls>
+        <!-- Default video source (with embedded audio and subtitles) -->
+        <source src="" type="video/mp4" id="video-source">
+
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="controls">
+        <!-- Video Language Selection -->
+        <select id="video-language-selector">
+            <option value="video-en.mp4">English Audio & Subtitles</option>
+            <option value="video-es.mp4">Spanish Audio & Subtitles</option>
+            <option value="video-fr.mp4">French Audio & Subtitles</option>
+        </select>
+    </div>
+</div>
+
+<script>
+    const video = document.getElementById("video");
+    const videoSource = document.getElementById("video-source");
+    const videoLanguageSelector = document.getElementById("video-language-selector");
+
+    // Change the video source based on the selected language
+    videoLanguageSelector.addEventListener('change', function() {
+        const selectedVideo = videoLanguageSelector.value;
+        videoSource.src = selectedVideo;
+        
+        // Reload the video to apply the new source
+        video.load();
+        video.play();
+    });
+</script>
+
+</body>
+</html>
